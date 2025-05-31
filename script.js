@@ -1,3 +1,9 @@
+let player;
+
+function onYouTubeIframeAPIReady() {
+    // Aquí se inicializa el reproductor cuando la API esté lista
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('videoModal');
     const closeBtn = document.querySelector('.close');
@@ -18,19 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Crear el iframe con el formato correcto y volumen al 50%
         const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&iv_load_policy=3&volume=50`;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&wmode=transparent&controls=0&start=0&iv_load_policy=3&mute=0&volume=50`;
         iframe.width = '100%';
         iframe.height = '100%';
         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
         iframe.allowfullscreen = true;
         iframe.frameborder = '0';
-        iframe.setAttribute('volume', '50');
-        iframe.setAttribute('data-volume', '50');
         
         // Limpiar el contenido anterior y agregar el nuevo iframe
         videoPlayer.innerHTML = '';
         videoPlayer.appendChild(iframe);
-    }
+    };
 
     // Función para cerrar el modal
     function closeModal() {
