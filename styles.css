@@ -32,6 +32,30 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(67, 97, 238, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(67, 97, 238, 0.4); }
+    100% { box-shadow: 0 0 10px rgba(67, 97, 238, 0.2); }
+}
+
+@keyframes shine {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.1; }
+}
+
 /* Agregando una capa de patrón geométrico sutil */
 body::before {
     content: '';
@@ -153,7 +177,7 @@ h1 {
 }
 
 .lineup-card {
-    background: linear-gradient(145deg, #1e1e1e, #2d2d2d, #1e1e1e);
+    background: url('assets/animations.svg#particles') url('assets/animations.svg#geometric-pattern') #1e1e1e;
     border-radius: 25px;
     padding: 2.5rem;
     cursor: pointer;
@@ -166,6 +190,50 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1);
     transform: perspective(1000px) rotateX(0deg);
     transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
+    filter: url('#neon') url('#glass') url('#energy-rays');
+}
+
+.lineup-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(67, 97, 238, 0.15));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: url('#neon');
+}
+
+.lineup-card:hover {
+    transform: perspective(1000px) rotateX(5deg) translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 50px var(--shadow-color);
+    animation: pulse 0.5s ease-in-out;
+    filter: url('#neon') url('#glass') url('#energy-rays');
+}
+
+.lineup-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(67, 97, 238, 0.2), rgba(67, 97, 238, 0.8), rgba(67, 97, 238, 0.2));
+    transition: width 0.3s ease;
+    filter: url('#neon');
+}
+
+.lineup-info p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    filter: url('#glass');
 }
 
 .lineup-card::before {
